@@ -46,6 +46,17 @@ $red: #F5222D;
 }
 
 
-
-@import 'header';
-@import 'switchLang';
+  
+  .content {
+    padding: 20px 0 100px;
+    display: flex;
+    column-gap: 30px;
+    justify-content: center;
+  }
+  
+  @import "header";
+  @import "switchLang";
+  @import "register";
+  @import "aside";
+  @import "friends";
+  @import "profile";
