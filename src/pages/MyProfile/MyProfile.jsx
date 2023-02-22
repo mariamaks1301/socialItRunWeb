@@ -19,7 +19,7 @@ const MyProfile = () => {
                         <h3 className="profile__info-name">
                             Ivan Ivanov
                         </h3>
-                        <a href="" className="profile__info-about">
+                        <a href="#" className="profile__info-about">
                             Enter information about yourself <span></span>
                         </a>
                     </div>

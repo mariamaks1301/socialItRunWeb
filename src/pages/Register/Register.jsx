@@ -39,7 +39,7 @@ const Register = () => {
 	}
 
     return (
-        <div className='regisster'>
+        <div className='register'>
             <div className="container">
                 <div className="register__content">
                 <form
