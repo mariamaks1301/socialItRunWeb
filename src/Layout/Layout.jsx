@@ -22,7 +22,10 @@ const Layout = () => {
         <div>
             <Header/>
             <main>
+               
                   <Outlet/>
+
+                
             </main>
             <Footer/>
 

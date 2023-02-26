@@ -1,22 +1,21 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { BiErrorCircle } from 'react-icons/bi'
-
-import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-
-import { fillUser } from '../../redux/reducers/user'
-import axios from '../../utils/axios'
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { BiErrorCircle } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { fillUser } from '../../redux/reducers/user';
+import axios from '../../utils/axios';
 import {useToast} from "@chakra-ui/react";
 
+
 const Login = () => {
+
+
+
 	const { t } = useTranslation()
-
 	const navigate = useNavigate()
-
 	const dispatch = useDispatch()
-
 	const toast = useToast()
 
 	const {
@@ -30,7 +29,7 @@ const Login = () => {
 			.post('/auth/login', data)
 			.then(({ data }) => {
 				dispatch(fillUser(data))
-				navigate('/')
+				navigate('/');
 			})
 			.catch(err => toast({
 				title: 'Такого аккаунта не существует.',

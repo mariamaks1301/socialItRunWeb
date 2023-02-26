@@ -1,6 +1,9 @@
 {
 	"header": {
-		"field": "Search"
+		"field": "Search",
+		"popupSettings": "Settings",
+		"popupTheme": "Theme",
+		"popupExit": "Exit"
 	},
 	"form": {
 		"title1": "Register",

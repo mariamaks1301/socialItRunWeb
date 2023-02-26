@@ -1,6 +1,9 @@
 {
 	"header": {
-		"field": "Поиск"
+		"field": "Поиск",
+		"popupSettings": "Настройки",
+		"popupTheme": "Тема",
+		"popupExit": "Выйти"
 	},
 	"form": {
 		"title1": "Регистрация",

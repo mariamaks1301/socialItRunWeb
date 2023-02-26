@@ -1,30 +1,22 @@
 import { Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Layout from './Layout/Layout';
-import Friends from './pages/Friends/Friends';
-import Login from './pages/Login/Login';
-import Home from './pages/Home/Home';
-import Register from './pages/Register/Register';
+import PrivateRouting from './routing/PrivatRouting';
+import AuthRouting from './routing/AuthRouting';
 import './styles/style.scss';
-import MyProfile from './pages/MyProfile/MyProfile';
 import './utils/i18n';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+const {user} = useSelector(store => store.user);
+
   return (
     <Suspense fallback={'...loading'} className="App">
-      <Routes>
-        <Route path='/' element={<Layout/>}>
-          <Route path='' element={<Home/>}/>
-          <Route path='login' element={<Login/>}/>
-          <Route path='register' element={<Register/>}/>
-          <Route path='friends' element={<Friends/>}/>
-          <Route path='myprofile' element={<MyProfile/>}/>
-
-
-            
-        </Route>
-      </Routes>
-      
+        {
+                !user.login.length ?
+                    <AuthRouting/>
+                    :
+                   <PrivateRouting/>
+        }     
     </Suspense>
   );
 }

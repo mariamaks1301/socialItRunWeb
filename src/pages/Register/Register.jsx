@@ -9,7 +9,12 @@ import DownLoadBtn from '../../components/DownloadBtn/DownloadBtn';
 import { fillUser } from '../../redux/reducers/user';
 import axios from '../../utils/axios';
 
+
+
 const Register = () => {
+
+
+
 
     const {t} = useTranslation();
     const [images, setImages] = useState('');
@@ -27,13 +32,13 @@ const Register = () => {
 		const { passwordAgain, ...other } = data
 
 		axios
-			.post('/auth/register', {
+			.post(`/auth/register`, {
 				...other,
 				image: images,
 			})
 			.then(({ data }) => {
-				dispatch(fillUser(data))
-				navigate('/')
+				dispatch(fillUser(data));
+				navigate('/');
 			})
 			.catch(err => console.log(err))
 	}

@@ -10,7 +10,7 @@ import {
     PAUSE,
     PERSIST,
     PURGE,
-    REGISTER, } from 'redux-persist'
+    REGISTER, } from 'redux-persist';
 import findUsers from "./reducers/findUsers";
 
 const rootReducer = combineReducers({

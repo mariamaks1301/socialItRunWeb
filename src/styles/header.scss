@@ -74,25 +74,45 @@
 
     }
     &__popover{
-        padding: 20px;
+        padding: 30px 20px 20px 20px;
         
-        
-     
         &-top{
             display: flex;
             column-gap: 20px;
+            align-items: center;
             margin-bottom: 15px;
+            background: $black;
+            padding: 8px 5px;
+            border-radius: 8px;
         }
         &-list{
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
         &-item{
+            padding: 5px 0;
             display: flex;
             align-items: center;
             column-gap: 10px;
-            cursor: pointer;
+            border-radius: 8px;
+            svg{
+                font-size: 22px;
+            }
+            &:not(:nth-child(3)):hover{
+                background: $black;
+                cursor: pointer;
+
+
+            }
         }
     }
 }
+ .css-i857na {
+     background: transparent !important;
+     padding: 30px 10px !important;
+       &:hover{
+         background: #424242 !important;
+   }
+ }
