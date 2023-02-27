@@ -1,0 +1,46 @@
+.notification{
+    background: #000000 !important;
+    min-height: 100vh;
+    padding-top: 50px;
+    color: #fff;
+
+    &__content{
+        background: $black;
+        max-width: 650px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 15px;
+    }
+    &__title{
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    &__list{
+        display: flex;
+        flex-direction: column;
+    }
+    &__card{
+        width: 100%;
+        border-top: 1px solid grey;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        &-row{
+            display: flex;
+            column-gap: 15px;
+            align-items: center;
+        }
+    }
+    &__btns{
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+        
+    }
+    &__btn{
+        padding: 0 10px !important;
+        &-reject{
+            border: 1px solid grey;
+        }
+    }
+}

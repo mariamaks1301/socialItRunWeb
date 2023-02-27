@@ -44,7 +44,7 @@ const Friends = () => {
     }
 
 
-    console.log(data)
+  
 
     return (
         <section className="friends">
