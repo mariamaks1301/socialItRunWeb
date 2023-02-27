@@ -31,8 +31,8 @@ const Register = () => {
     const registerUser = data => {
 		const { passwordAgain, ...other } = data
 
-		axios
-			.post(`/auth/register`, {
+		
+		axios.post('/auth/register', {
 				...other,
 				image: images,
 			})

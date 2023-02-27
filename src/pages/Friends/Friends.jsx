@@ -10,20 +10,16 @@ import {fillUser} from "../../redux/reducers/user";
 
 const Friends = () => {
 
-    const dispatch = useDispatch()
-
-    const {user} = useSelector(store => store.user)
-    const {data, filter} = useSelector(store => store.findUsers)
-
-    const [search, setSearch] = useState(filter.search || '' )
-
-    const toast = useToast()
+    const dispatch = useDispatch();
+    const {user} = useSelector(store => store.user);
+    const {data, filter} = useSelector(store => store.findUsers);
+    const [search, setSearch] = useState(filter.search || '' );
+    const toast = useToast();
 
 
     useEffect(() => {
-        dispatch(findAllUser({login : user.login, search}))
-        dispatch(changeSearch(search))
-    }, [search])
+        dispatch(findAllUser({login : user.login, search}));
+    }, [search]);
 
 
     const sendRequest = (id) => {

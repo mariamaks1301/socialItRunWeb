@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import axios from "../../utils/axios";
 import {Button} from "@chakra-ui/react";
 
-
 const DownLoadBtn = ({images,setImages}) => {
     const image = useRef()
 
@@ -23,20 +22,17 @@ const DownLoadBtn = ({images,setImages}) => {
 
     return (
         <li style={{display: 'flex', alignItems: 'center'}}>
-            <Button onClick={() => image.current.click()} type='button' variant="contained" style={{backgroundColor: 'grey'}} color="success">
+            <Button onClick={() => image.current.click()} type='button' variant="contained" style={{backgroundColor: '#fa8231'}} color="success">
                 Загрузить картинку
             </Button>
             <input ref={image}  hidden  type="file" onChange={handleChangeImage1} id='image'/>
             {
-                images &&  (
-                <>
-                    <img style={{width:'100px', margin: '0 20px'}} src={`http://localhost:4444${images}`} alt="Uploaded"/>
+                images && (
+                    <>
+                        <img style={{width:'100px', margin: '0 20px'}} src={`http://localhost:4444${images}`} alt="Uploaded"/>
 
-                    <Button style={{width:'50px'}} onClick={() => setImages('')} type='button' variant="contained">
-                            У
-                    </Button>
-                </>
-                   
+                        <Button style={{width:'200px'}} onClick={() => setImages('')} type='button' variant="contained">Удалить картинку</Button>
+                    </>
                 )
             }
         </li>
