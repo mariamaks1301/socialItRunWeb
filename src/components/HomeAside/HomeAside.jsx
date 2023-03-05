@@ -17,7 +17,7 @@ const HomeAside = () => {
                 <li className="aside__item" onClick={() => navigate('/friends')}>
                     <HiOutlineUsers/>
                     Friends
-                </li>
+                </li> 
             </ul>
         </aside>
     );

@@ -1,15 +1,23 @@
 import React, {useRef, useState} from 'react';
 import {SlPencil} from "react-icons/sl"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../../redux/reselect';
 import axios from '../../utils/axios';
+import { Button } from '@chakra-ui/react';
+import EmojiPicker from 'emoji-picker-react';
+import {FaRegSmileWink} from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid';
+import { fillUser } from '../../redux/reducers/user';
+
 
 const MyProfile = () => {
 
     const image = useRef();
     const {user} = useSelector(userSelector);
-
     const [cover, setCover] = useState('');
+    const [selectEmoji, setSelectEmoji] = useState(false);
+    const [post, setPost] = useState('');
+    const dispatch = useDispatch();
 
     const handleCover = async (e)=>{
         try {
@@ -24,6 +32,28 @@ const MyProfile = () => {
             alert('Ошибка при загрузке файла')
         }
     }
+
+    const addPost = async ()=>{
+        try {
+            const res = await axios.patch(`/users/${user._id}/addpost`, {
+                text: post,
+                owner: user._id,
+                id: uuidv4(),
+                date: Date.now()
+            })
+
+            dispatch(fillUser(res.data));
+            setPost('');
+            
+        } catch (err) {
+            console.log(err);
+            alert('He удалось добавить пост', err);
+            
+        }
+
+
+    }
+            
 
     return (
         <section className="profile">
@@ -54,8 +84,39 @@ const MyProfile = () => {
                         </button>
                     </div>
                 </div>
+                <div className="profile__addPost">
+                    <div className='profile__addPost-top'>
+                        <textarea value={post} onChange={(e)=> setPost(e.target.value)} placeholder='Что у Вас нового?' className='profile__addPost-field' type="text" />
+                        <div className='profile__addPost-emoji'>
+                            {
+                                selectEmoji ? 
+                                <div onMouseLeave={()=> setSelectEmoji(false)} className='profile__emoji-block'>
+                                    <EmojiPicker  onEmojiClick={(emoji)=> setPost(prev => post + emoji.emoji)} className='profile__emoji-picker'/> 
+                                </div>
+                                : 
+                                <FaRegSmileWink style={{fontSize: '23px'}} onMouseEnter={()=> setSelectEmoji(true)} className='profile__emoji-icon'/>
+                            }
+                        </div>
+                    </div>
+                    <div className='profile__addPost-btns'>
+                        <Button className="profile__addPost-btn" colorScheme='facebook'>Отменить</Button>
+                        <Button onClick={addPost} className="profile__addPost-btn" colorScheme='facebook'>Опубликовать</Button>
+                    </div>
+                </div>
+                <div className='profile__posts'>
+                        <div className="profile__posts-top">
+                            <Button className='profile__posts-btn' colorScheme='gray'>Все записи</Button>
+                            <Button className='profile__posts-btn' colorScheme='gray'>Мои записи</Button>
+                            <Button className='profile__posts-btn' colorScheme='gray'>Архив записей</Button>
+                        </div>
+                        <div className='profile__posts-row'>
+                            {
+                                
+                            }
+                        </div>
+                    </div>
             </div>
-        </section>
+        </section>      
     );
 };
 

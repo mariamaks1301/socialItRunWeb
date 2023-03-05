@@ -1,9 +1,8 @@
 .profile {
     width: 85%;
     padding: 20px 0;
-    
+    margin: 0 auto;    
     &__info {
-      
       width: 100%;
       background: #222222;
       border-radius: 20px;
@@ -91,4 +90,82 @@
       }
   
     }
+    &__addPost{
+      position: relative;
+      margin: 40px 0 20px;
+      background: #424242;
+      border-radius: 20px;
+      border: 1px solid grey;
+      min-height: 150px;
+      padding: 20px;
+      &-top{
+        display: flex;
+        justify-content: space-between;
+        column-gap: 20px;
+      }
+      &-field{
+        background: transparent;
+        width: 70%;
+        resize: none;
+        min-height: 80px;
+        max-height: 500px;
+        padding: 10px 0;
+        
+      }
+      &-btns{
+        display: flex;
+        justify-content: end;
+        column-gap: 30px;
+        margin-top: 20px;
+        padding-right: 100px;
+      }
+    }
+    &__emoji-block{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+
+      width: 350px;
+      height: 400px;
+
+      transition: .3s all linear;
+
+      &-picker{
+        width: 100%;
+      }
+      &-icon{
+        font-size: 25px;
+      }
+    }
+    &__posts{
+      background: #424242;
+      border-radius: 20px;
+      border: 1px solid grey;
+      padding: 20px;
+
+      &-top{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        column-gap: 30px;
+
+      }
+      &-btn{
+        border: 1px solid grey;
+        padding: 15px 15px !important;
+        &:hover{
+          background: grey !important;
+          color: black !important;
+        }
+      }
+      &-row{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+      }
+    }
+    
+ 
   }
