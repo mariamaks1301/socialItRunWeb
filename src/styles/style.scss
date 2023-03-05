@@ -13,7 +13,12 @@
 }
 
 body {
+ 
+}
+.main{
   background: #181818;
+  min-height: 100vh;
+
 }
 
 button, input {
@@ -56,3 +61,7 @@ $red : #F5222D;
 @import "friends";
 @import "profile";
 @import "notification";
+@import "requests";
+@import "photos";
+
+

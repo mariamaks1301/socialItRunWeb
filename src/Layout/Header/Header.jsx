@@ -1,13 +1,15 @@
 import React from 'react';
 import {IoMdNotifications} from 'react-icons/io';
+import {CiSquareQuestion} from 'react-icons/ci';
 import HeaderSearch from "./HeaderSearch";
 import {BiChevronsDown} from 'react-icons/bi';
 import SwitchLang from "./SwitchLang/SwitchLang";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AiFillSetting} from 'react-icons/ai';
 import {MdOutlineLanguage} from 'react-icons/md';
 import {BsPaletteFill} from 'react-icons/bs';
 import {FiLogOut} from 'react-icons/fi';
+
 
 import {
     Avatar,
@@ -19,14 +21,17 @@ import {
     PopoverCloseButton,
     Icon
 } from "@chakra-ui/react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logOutUser} from "../../redux/reducers/user";
 import { useTranslation } from 'react-i18next';
+import { userSelector } from '../../redux/reselect';
 
 const Header = () => {
 
     const dispatch = useDispatch()
     const {t} = useTranslation();
+    const {user} = useSelector(userSelector);
+    const navigate = useNavigate();
 
     return (
         <header className='header'>
@@ -40,15 +45,18 @@ const Header = () => {
                         <HeaderSearch/>
                     </div>
                     <div className='header__right'>
-                        <span className='header__notif'>
+                        <Link to='/notifications' className='header__notif'>
                             <IoMdNotifications/>
-                        </span>
+                        </Link>
+                        <Link to='/requests' className='header__notif'>
+                            <CiSquareQuestion/>
+                        </Link>
 
 
                         <Popover  placement='top-end'  isLazy>
                             <PopoverTrigger>
                                 <Button  className='header__user'>
-                                    <Avatar  name='Max Birimkulov' src=''/>
+                                    <Avatar name={`${user.name}${user.surname}`} className='header__popover-img'   src={`${process.env.REACT_APP_URL}${user.image}`}/>
                                     <span className='header__user-icon'>
                                 <BiChevronsDown/>
                                     </span>
@@ -58,11 +66,11 @@ const Header = () => {
                                 <PopoverCloseButton  />
                                 <PopoverArrow   bg='black'/>
                                 <div className='header__popover'>
-                                    <div className='header__popover-top'>
-                                        <Avatar bg={'red'} name="Maria Maks" className='header__popover-img'   src='https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg'/>
+                                    <div className='header__popover-top' onClick={()=> navigate('/myprofile')}>
+                                        <Avatar name={`${user.name}${user.surname}`} className='header__popover-img'   src={`${process.env.REACT_APP_URL}${user.image}`}/>
                                         <div>
-                                            <h3 className='header__popover-title'>Maria Maks</h3>
-                                            <p className='header__popover-num'>+996 555 55 55 55</p>
+                                            <h3 className='header__popover-title'>{user.name} {user.surname}</h3>
+                                            <p className='header__popover-num'>{user.phone}</p>
                                         </div>
                                     </div>
                                     <ul className='header__popover-list'>

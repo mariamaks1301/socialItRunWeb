@@ -5,12 +5,13 @@ import { Image, Button } from '@chakra-ui/react';
 import {useToast} from "@chakra-ui/react";
 import axios from '../../utils/axios';
 import { fillUser } from '../../redux/reducers/user';
+import { notificationSelector, userSelector } from '../../redux/reselect';
 
 const Notifications = () => {
 
     const dispatch = useDispatch();
-    const {user} = useSelector(store => store.user);
-    const {data} = useSelector(store => store.notification);
+    const {user} = useSelector(userSelector);
+    const {data} = useSelector(notificationSelector);
     const toast = useToast();
 
 
@@ -49,6 +50,32 @@ const Notifications = () => {
         })
     }
 
+    const cancelFriends = (id)=>{
+        axios.patch('/request/cancel', {
+            senderId: id,
+            recieverId: user._id
+        }).then((res)=>{
+           toast({
+            title: 'Заявка отклонена',
+            status: 'success',
+            duration: 3000,
+            position: 'center-top',
+            isClosable: true,
+           })
+           dispatch(fillUser(res.data))
+           dispatch(getAllNotifications(res.data.notification))
+
+        }).catch(()=>{
+            toast({
+                title: 'Запрос отклонен',
+                status: 'error',
+                duration: 3000,
+                position: 'center-top',
+                isClosable: true,
+            })
+        })
+    }
+
 
     return (
         <section className='notification'>
@@ -58,7 +85,7 @@ const Notifications = () => {
                     <div className="notification__list">
                         {
                             data.map((item)=> (
-                                <div className='notification__card'>
+                                <div key={item._id} className='notification__card'>
                                     <div className='notification__card-row'>
                                         <Image
                                             fallbackSrc='https://via.placeholder.com/100'
@@ -75,7 +102,7 @@ const Notifications = () => {
                                     </div>
                                     
                                     <div className='notification__btns'>
-                                        <Button className='notification__btn notification__btn-reject' colorScheme='gray'>Отменить</Button>
+                                        <Button onClick={()=> cancelFriends(item._id)} className='notification__btn notification__btn-reject' colorScheme='gray'>Отменить</Button>
                                         <Button onClick={()=> acceptFriends(item._id)} className='notification__btn ' colorScheme='messenger'>Добавить</Button>
                                     </div>
                                     

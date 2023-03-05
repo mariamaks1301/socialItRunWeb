@@ -6,13 +6,14 @@ import {changeSearch, findAllUser} from "../../redux/reducers/findUsers";
 import {Image, useToast} from "@chakra-ui/react";
 import axios from "../../utils/axios";
 import {fillUser} from "../../redux/reducers/user";
+import { findUserSelector, userSelector } from '../../redux/reselect';
 
 
 const Friends = () => {
 
     const dispatch = useDispatch();
-    const {user} = useSelector(store => store.user);
-    const {data, filter} = useSelector(store => store.findUsers);
+    const {user} = useSelector(userSelector);
+    const {data, filter} = useSelector(findUserSelector);
     const [search, setSearch] = useState(filter.search || '' );
     const toast = useToast();
 
