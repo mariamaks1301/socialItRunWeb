@@ -12,12 +12,10 @@
   color: white;
 }
 
-body {
- 
-}
 .main{
   background: #181818;
   min-height: 100vh;
+  padding: 20px 0;
 
 }
 
@@ -63,5 +61,10 @@ $red : #F5222D;
 @import "notification";
 @import "requests";
 @import "photos";
+@import "chat";
+@import "editMyProfile";
+@import "downloadBtn";
+
+
 
 

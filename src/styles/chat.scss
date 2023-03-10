@@ -1,0 +1,105 @@
+.chat{
+    display: flex;
+    column-gap: 20px;
+    &__content{
+        width: 80%;
+        background: #222222;
+        margin-right: 20px;
+        border-radius: 15px;
+        display: flex;
+        height: 85vh;
+        
+    }
+    &__sidebar{
+        width: 30%;
+        position: relative;
+       
+       
+        &::after{
+            content: '' !important;
+            width: 2px;
+            height: 100%;
+            background: #FFFFFF50;
+            position: absolute;
+            right: 0;
+            top: 0;
+         
+        }
+
+    }
+    &__search{
+        height: 60px;
+        padding: 0 20px;
+        border-bottom: 1px solid #FFFFFF50;
+        display: flex;
+        align-items: center;
+    }
+
+    &__friends{
+        padding: 15px 20px;
+        display: flex;
+        column-gap: 10px;
+        border-bottom: 1px solid #FFFFFF50;
+        overflow: hidden;
+    }
+
+    &__block{
+        width: 70%;
+        position: relative;
+
+        &-top{
+            height: 60px;
+            padding: 0 20px;
+            border-bottom: 1px solid #FFFFFF50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-bottom{
+            height: 60px;
+            padding: 0 20px;
+            border-top: 1px solid #FFFFFF50;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            display: flex;
+            align-items: center;
+
+        }
+        &-field{
+            border: 1px solid #FFFFFF50 !important;
+            outline: none !important;
+            padding-right: 50px !important;
+
+            position: relative;
+        }
+        &-emoji{
+            position: absolute;
+            right: 40px;
+            top: -400px;
+        }
+        &-icon{
+            position: absolute;
+            right: 40px;
+            top: 18px;
+        }
+
+
+    }
+   
+    &__list{
+        display: flex;
+        flex-direction: column;
+    
+    }
+    &__popover-item{
+        background: #363535;
+        border-radius: 2px;
+        margin-bottom: 3px;
+        cursor: pointer;
+    }
+   
+}

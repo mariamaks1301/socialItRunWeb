@@ -1,10 +1,14 @@
 import React from 'react';
+import HomeAside from '../../components/HomeAside/HomeAside';
 
 const Home = () => {
     return (
-        <div>
-            
-        </div>
+        <section className='home'>
+           
+                <HomeAside/>
+
+              
+        </section>
     );
 };
 

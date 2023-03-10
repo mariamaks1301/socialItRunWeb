@@ -8,15 +8,13 @@ import  { Link, useNavigate} from 'react-router-dom';
 import DownLoadBtn from '../../components/DownloadBtn/DownloadBtn';
 import { fillUser } from '../../redux/reducers/user';
 import axios from '../../utils/axios';
+import { day, months, year} from '../../utils/birthday';
 
 
 
 const Register = () => {
-
-
-
-
-    const {t} = useTranslation();
+	
+    const {t, i18n} = useTranslation();
     const [images, setImages] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,12 +27,13 @@ const Register = () => {
     } = useForm({mode: 'onTouched'});
 
     const registerUser = data => {
-		const { passwordAgain, ...other } = data
+		const { passwordAgain, day, months, year, ...other } = data
 
 		
 		axios.post('/auth/register', {
 				...other,
 				image: images,
+				birthday: `${day, months, year}`
 			})
 			.then(({ data }) => {
 				dispatch(fillUser(data));
@@ -282,27 +281,9 @@ const Register = () => {
 
 						<div className='register__block'>
 							<label className='register__label'>
-								<h2 className='register__label-title'>{t('form.labelAge')}</h2>
-								<input
-									type='date'
-									{...register('birthday', {
-										required: { value: true, message: 'Enter a date' },
-									})}
-									style={{
-										border: errors.birthday && '#f5222d 1px solid',
-									}}
-									className='register__field'
-								/>
-								<span className='register__error'>
-									{errors.birthday && <BiErrorCircle fill='#f5222d' />}
-									<span className='register__error-text'>
-										{errors.birthday && errors.birthday.message}
-									</span>
-								</span>
-							</label>
-
-							<label className='register__label'>
-								<h2 className='register__label-title'>{t('form.labelCity')}</h2>
+								<h2 className='register__label-title'
+								
+								>{t('form.labelCity')}</h2>
 								<input
 									type='text'
 									{...register('city', {
@@ -322,6 +303,35 @@ const Register = () => {
 								</span>
 							</label>
 						</div>
+
+						<div className="register__block register__block-birth">
+							<label className='register__label'>
+								<h2 className='register__label-title'> Дата рождения</h2>  
+                            </label>
+                            <select {...register('day')}  className='register__select' style={{width: '50px'}}>
+                                {
+                                    day.map((item)=>(
+                                        <option aria-hidden className='register__option' key={item} value={item}>{item}</option>
+                                    ))
+                                }
+                            </select>  
+                            <select {...register('months')}  className='register__select' style={{width: '140px'}}>
+                                {
+                                    months.map((item)=>(
+                                        <option className='register__option' key={item.en} value={item.en}>{i18n.language === 'ru' ? item.ru : item.en}</option>
+                                    ))
+                                }
+                            </select>  
+                            <select {...register('year')}  className='register__select' style={{width: '100px'}}>
+                                {
+                                    year.map((item)=>(
+                                        <option className='register__option ' key={item} value={item}>{item}</option>
+                                    ))
+                                }
+                            </select>  
+						</div>
+							
+						
 						<button className='register__btn' type='submit'>
 							{t('form.btn1')}
 						</button>

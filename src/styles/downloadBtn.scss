@@ -1,0 +1,24 @@
+.downloadBtn{
+    &__item{
+        display: flex;
+        align-items: center;
+    }
+    &__img{
+        width: 100px !important;
+        height: 80px;
+        margin: 0 10px;
+    }
+    &__add{
+        background: grey !important;
+        border: 1px solid grey;
+
+    }
+    &__del{
+        width: 50px;
+        padding: 0 10px;
+        svg{
+            font-size: 25px;
+        }
+
+    }
+}

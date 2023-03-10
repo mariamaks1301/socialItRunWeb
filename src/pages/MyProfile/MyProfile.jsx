@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {SlPencil} from "react-icons/sl"
+import {SlPencil} from "react-icons/sl";
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../../redux/reselect';
 import axios from '../../utils/axios';
@@ -8,6 +8,8 @@ import EmojiPicker from 'emoji-picker-react';
 import {FaRegSmileWink} from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import { fillUser } from '../../redux/reducers/user';
+import { format } from 'timeago.js';
+import { useNavigate } from 'react-router-dom';
 
 
 const MyProfile = () => {
@@ -18,6 +20,7 @@ const MyProfile = () => {
     const [selectEmoji, setSelectEmoji] = useState(false);
     const [post, setPost] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleCover = async (e)=>{
         try {
@@ -79,7 +82,7 @@ const MyProfile = () => {
                                 Enter information about yourself <span></span>
                             </a>
                         </div>
-                        <button className="profile__info-change">
+                        <button onClick={()=> navigate('/editmyprofile')} className="profile__info-change">
                             Change profile
                         </button>
                     </div>
@@ -111,6 +114,18 @@ const MyProfile = () => {
                         </div>
                         <div className='profile__posts-row'>
                             {
+                                user.posts.map((item)=>(
+                                    <div key={item._id} className="profile__post-card">
+                                        <div className="profile__post-card-top">
+                                            {format(item.date, )}
+                                        </div>
+                                        <p className="profile__post-card-text">{item.text}</p>
+                                        <div className="profile__post-card-icons">
+
+                                        </div>
+                                    </div>
+                                ))
+
                                 
                             }
                         </div>

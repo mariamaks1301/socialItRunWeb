@@ -1,0 +1,39 @@
+.editMyProfile{
+    height: 200vh;
+    padding: 20px 0;
+
+    &__content{
+        padding: 20px 0;
+    }
+   
+
+    &__card{
+        overflow-y: hidden;
+        display: flex;
+        column-gap: 30px;
+        margin-bottom: 10px;
+    }
+    &__label{
+        width: 200px;
+    }
+    &__field{
+        background: #424242;
+    }
+    &__select{
+        background: #424242;
+        overflow-y: scroll;
+        max-height: 200px;
+        &-days{
+            height: 200px;
+            overflow-y: hidden;
+            
+              
+          }
+    }
+    &__option{
+        background: #424242;
+        border-radius: 5px;
+        border: none;
+    }
+    
+}

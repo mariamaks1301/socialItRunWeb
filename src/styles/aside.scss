@@ -1,20 +1,24 @@
 .aside {
-    width: 15%;
-    padding: 0 20px 20px 0;
+    width: 18%;
+    padding: 20px 10px;
+    margin-left: 20px;
+    background: #222222;
+    border-radius: 15px;
      &__menu {
+      padding: 20px;
        display: flex;
        flex-direction: column;
-       row-gap: 15px;
+       row-gap: 8px;
      }
     &__item {
-  
-      padding: 4px 3px;
-      font-size: 20px;
+      padding: 6px 10px;
+      font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
       display: flex;
       column-gap: 10px;
       align-items: center;
+    
       &:hover {
         background: #424242;
       }

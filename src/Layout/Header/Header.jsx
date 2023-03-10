@@ -53,7 +53,7 @@ const Header = () => {
                         </Link>
 
 
-                        <Popover  placement='top-end'  isLazy>
+                        <Popover  placement='top-end'  isLazy >
                             <PopoverTrigger>
                                 <Button  className='header__user'>
                                     <Avatar name={`${user.name}${user.surname}`} className='header__popover-img'   src={`${process.env.REACT_APP_URL}${user.image}`}/>
